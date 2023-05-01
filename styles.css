@@ -1,4 +1,56 @@
-.calculator, #column {
+.calculator {
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
+}
+
+.calculatorBody {
+    padding: 15px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+#row {
+    display: flex;
+    flex-direction: row;
+}
+
+#short {
+    height: 50px;
+    width: 70px;
+}
+
+#long {
+    height: 50px;
+    width: 150px;
+}
+
+button {
+    padding : 10px;
+    margin: 5px;
+    border: 2px solid rgb(91, 91, 91);
+    border-radius: 10px;
+}
+
+.screenRectangle {
+    height: 70px;
+    background-color: rgb(21, 115, 92);
+    color: black;
+    border: 2px solid rgb(7, 58, 45);
+    border-radius: 10px;
+    margin: 15px;
+}
+
+.calculator {
+    background-color: gray;
+    border: 2px solid black;
+    width: min-content;
+}
+
+.calculatorBody {
+    margin: 15px;
 }
