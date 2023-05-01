@@ -1,3 +1,7 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .calculator {
     display: flex;
     flex-direction: column;
@@ -19,14 +23,19 @@
     flex-direction: row;
 }
 
-#short {
+button {
     height: 50px;
     width: 70px;
 }
 
-#long {
+.backspace {
     height: 50px;
     width: 150px;
+}
+
+.equal {
+    height: 50px;
+    width: 230px;
 }
 
 button {
