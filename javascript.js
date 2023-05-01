@@ -44,10 +44,14 @@ function divide(...numbers) {
 }
 
 const buttons = document.querySelectorAll("button");
-const calcDisplay = document.getElementsByClassName("display");
+const displayContainer = document.querySelector(".display");
+const calcDisplay = document.createElement("div");
+calcDisplay.classList.add("calcDisplay");
+displayContainer.appendChild(calcDisplay);
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        console.log(button.className);
+        calcDisplay.textContent += `${button.className}`;
+        calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px")
     });
 })
