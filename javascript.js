@@ -42,3 +42,12 @@ function divide(...numbers) {
     });
     return division;
 }
+
+const buttons = document.querySelectorAll("button");
+const calcDisplay = document.getElementsByClassName("display");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        console.log(button.className);
+    });
+})
