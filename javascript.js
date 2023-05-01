@@ -52,6 +52,12 @@ displayContainer.appendChild(calcDisplay);
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         calcDisplay.textContent += `${button.className}`;
-        calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px")
+        calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-shrink: -3")
     });
+})
+
+const opButton = document.querySelector("#equal");
+
+opButton.addEventListener("click", () => {
+    console.log(calcDisplay.textContent);
 })
