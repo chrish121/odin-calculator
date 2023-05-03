@@ -81,5 +81,5 @@ equalButton.addEventListener("click", () => {
     console.log(secondNumber);
     console.log(calcDisplay.textContent);
     let answer = operate(firstNumber, firstOperationClass, secondNumber);
-    console.log(answer);
+    calcDisplay.textContent = answer;
 })
