@@ -44,6 +44,8 @@ function divide(...numbers) {
 }
 
 const buttons = document.querySelectorAll("button");
+const numberButtons = document.querySelectorAll("#number");
+const operatorButtons = document.querySelectorAll("#operator");
 const displayContainer = document.querySelector(".display");
 const calcDisplay = document.createElement("div");
 calcDisplay.classList.add("calcDisplay");
@@ -56,8 +58,25 @@ buttons.forEach((button) => {
     });
 })
 
-const opButton = document.querySelector("#equal");
+numberButtons.forEach((numButton) => {
+    numButton.addEventListener("click", () => {
+        numClicked = `${numButton.className}`;
+    })
+})
 
-opButton.addEventListener("click", () => {
+operatorButtons.forEach((opButton) => {
+    opButton.addEventListener("click", () => {
+        firstNumber = numClicked;
+        firstOperation = `${opButton.className}`;
+        console.log(firstNumber);
+        console.log(firstOperation);
+    })
+})
+
+const equalButton = document.querySelector("#equal");
+
+equalButton.addEventListener("click", () => {
+    secondNumber = numClicked;
+    console.log(secondNumber);
     console.log(calcDisplay.textContent);
 })

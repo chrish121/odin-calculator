@@ -33,7 +33,7 @@ button {
     width: 70px;
 }
 
-.backspace, .equal {
+#backspace, #equal {
     height: 50px;
     width: 150px;
 }
