@@ -1,14 +1,14 @@
 function operate(firstNum, calcOp, secondNum) {
-    if (calcOp === `plus`) {
+    if (calcOp === `+`) {
         return (add(firstNum, secondNum));
     }
-    if (calcOp === `minus`) {
+    if (calcOp === `-`) {
         return (subtract(firstNum, secondNum));
     }
-    if (calcOp === `multiply`) {
+    if (calcOp === `*`) {
         return (multiply(firstNum, secondNum));
     }
-    if (calcOp === `divide`) {
+    if (calcOp === `/`) {
         return (divide(firstNum, secondNum));
     } else {
         return("Try again.");
@@ -17,7 +17,7 @@ function operate(firstNum, calcOp, secondNum) {
 
 function add(...numbers) {
     const sum = numbers.reduce((total, num) => {
-        return total + num;
+        return (parseInt(total) + parseInt(num));
     }, 0);
     return sum;
 }
@@ -43,7 +43,7 @@ function divide(...numbers) {
     return division;
 }
 
-const equalButton = document.querySelector("#equal");
+const equalButton = document.querySelector(".equal");
 const numberButtons = document.querySelectorAll("#number");
 const operatorButtons = document.querySelectorAll("#operator");
 const displayContainer = document.querySelector(".display");
@@ -66,14 +66,16 @@ operatorButtons.forEach((opButton) => {
     opButton.addEventListener("click", () => {
         firstNumber = finalNum;
         operationButton = `${opButton.textContent}`;
-        operationClass = `${opButton.className}`;
         finalNum = "";
+        console.log(firstNumber);
     });
 })
+
 
 equalButton.addEventListener("click", () => {
     secondNumber = finalNum;
     calcDisplay.textContent = secondNumber;
-    answer = operate(firstNumber, operationClass, secondNumber);
+    answer = operate(firstNumber, operationButton, secondNumber);
     calcDisplay.textContent = answer;
+    finalNum = answer;
 });
