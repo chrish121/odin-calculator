@@ -43,7 +43,7 @@ function divide(...numbers) {
     return division;
 }
 
-const buttons = document.querySelectorAll("button");
+const equalButton = document.querySelector("#equal");
 const numberButtons = document.querySelectorAll("#number");
 const operatorButtons = document.querySelectorAll("#operator");
 const displayContainer = document.querySelector(".display");
@@ -51,35 +51,29 @@ const calcDisplay = document.createElement("div");
 calcDisplay.classList.add("calcDisplay");
 displayContainer.appendChild(calcDisplay);
 
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-        calcDisplay.textContent += `${button.textContent}`;
-        calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-shrink: -3")
-    });
-})
+let finalNum = "";
 
 numberButtons.forEach((numButton) => {
     numButton.addEventListener("click", () => {
         numClicked = parseInt(`${numButton.textContent}`);
+        finalNum += numClicked;
+        calcDisplay.textContent = parseInt(finalNum);
+        calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-shrink: -3");
     })
 })
 
 operatorButtons.forEach((opButton) => {
     opButton.addEventListener("click", () => {
-        firstNumber = numClicked;
-        firstOperation = `${opButton.textContent}`;
-        firstOperationClass = `${opButton.className}`;
-    })
+        firstNumber = finalNum;
+        operationButton = `${opButton.textContent}`;
+        operationClass = `${opButton.className}`;
+        finalNum = "";
+    });
 })
-
-const equalButton = document.querySelector("#equal");
 
 equalButton.addEventListener("click", () => {
-    secondNumber = numClicked;
-    console.log(firstNumber);
-    console.log(firstOperation);
-    console.log(secondNumber);
-    console.log(calcDisplay.textContent);
-    let answer = operate(firstNumber, firstOperationClass, secondNumber);
+    secondNumber = finalNum;
+    calcDisplay.textContent = secondNumber;
+    answer = operate(firstNumber, operationClass, secondNumber);
     calcDisplay.textContent = answer;
-})
+});
