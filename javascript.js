@@ -45,24 +45,37 @@ function divide(...numbers) {
 
 const buttons = document.querySelectorAll("button");
 const equalButton = document.querySelector(".equal");
+const decimalButton = document.querySelector(".decimal");
 const numberButtons = document.querySelectorAll("#number");
 const operatorButtons = document.querySelectorAll("#operator");
 const displayContainer = document.querySelector(".display");
 const calcDisplay = document.createElement("div");
 calcDisplay.classList.add("calcDisplay");
 displayContainer.appendChild(calcDisplay);
+calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-shrink: -3");
+
 
 let finalNum = "";
 let answer = "";
 let lastAnswer = "";
 
-numberButtons.forEach((numButton) => {
-    numButton.addEventListener("click", () => {
-        numClicked = Number(`${numButton.textContent}`);
+numberButtons.forEach((numberButton) => {
+    numberButton.addEventListener("click", () => {
+        numClicked = (`${numberButton.textContent}`);
         finalNum += numClicked;
         calcDisplay.textContent = Number(finalNum);
-        calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-shrink: -3");
     })
+})
+
+decimalButton.addEventListener("click", () => {
+    decimalClicked = `${decimalButton.textContent}`;
+    stringNum = " " + finalNum;
+    if ((stringNum.includes(".")) == true) {
+        finalNum = finalNum;
+    } else {
+        finalNum += decimalClicked;
+        calcDisplay.textContent += decimalClicked;
+    }
 })
 
 operatorButtons.forEach((opButton) => {
