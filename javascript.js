@@ -44,6 +44,7 @@ function divide(...numbers) {
 }
 
 const buttons = document.querySelectorAll("button");
+const clearButton = document.querySelector("#clear");
 const equalButton = document.querySelector(".equal");
 const decimalButton = document.querySelector(".decimal");
 const numberButtons = document.querySelectorAll("#number");
@@ -57,6 +58,13 @@ let answer = "nothing";
 let lastAnswer = 0;
 let operationButton = 0;
 let zeroAnswer = 0;
+
+clearButton.addEventListener("click", () => {
+    calcDisplay.textContent = "";
+    finalNum = "";
+    answer = "nothing";
+    operationButton = 0;
+})
 
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", () => {
