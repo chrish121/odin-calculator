@@ -50,23 +50,27 @@ const numberButtons = document.querySelectorAll("#number");
 const operatorButtons = document.querySelectorAll("#operator");
 const displayContainer = document.querySelector(".display");
 const calcDisplay = document.querySelector(".calcDisplay");
+calcDisplay.textContent = 0;
 
-let finalNum = "";
-let answer = "";
-let lastAnswer = "";
+let finalNum = 0;
+let answer = 0;
+let lastAnswer = 0;
 
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", () => {
         numClicked = (`${numberButton.textContent}`);
-        finalNum += numClicked;
-        stringNum = " " + finalNum;
-        calcDisplay.textContent = Number(stringNum);
+        if ((finalNum.toString().length) <= 6) {
+            finalNum += numClicked;
+        } else {
+            finalNum = finalNum;
+        }
+        calcDisplay.textContent = Number(finalNum);
     })
 })
 
 decimalButton.addEventListener("click", () => {
     decimalClicked = `${decimalButton.textContent}`;
-    if ((stringNum.includes(".")) == true) {
+    if ((finalNum.includes(".")) == true) {
         finalNum = finalNum;
     } else {
         finalNum += decimalClicked;
@@ -87,6 +91,12 @@ operatorButtons.forEach((opButton) => {
             secondOperation = operationButton;
             operateAnswer = operate(answer, firstOperation, finalNum);
             finalNum = "";
+            if ((operateAnswer.toString().length) <= 6) {
+                operateAnswer = operateAnswer;
+            } else {
+                roundedAnswer = parseFloat(operateAnswer);
+                operateAnswer = roundedAnswer;
+            }
             calcDisplay.textContent = operateAnswer;
             answer = operateAnswer;
             firstOperation = secondOperation;
@@ -97,5 +107,17 @@ operatorButtons.forEach((opButton) => {
 
 equalButton.addEventListener("click", () => {
     lastAnswer = operate(answer, operationButton, finalNum);
-    calcDisplay.textContent = lastAnswer;
+    if ((lastAnswer.toString().length) <= 6) {
+        operateAnswer = lastAnswer;
+    } else {
+        slicedAnswer = parseFloat(lastAnswer);
+        console.log(slicedAnswer);
+        if ((slicedAnswer.toString().length) <= 6) {
+            operateAnswer = slicedAnswer;
+        } else {
+            roundedAnswer = slicedAnswer.toExponential(1);
+            operateAnswer = roundedAnswer;
+        }
+    }
+    calcDisplay.textContent = operateAnswer;
 });
