@@ -17,7 +17,7 @@ function operate(firstNum, calcOp, secondNum) {
 
 function add(...numbers) {
     const sum = numbers.reduce((total, num) => {
-        return (parseInt(total) + parseInt(num));
+        return (Number(total) + Number(num));
     }, 0);
     return sum;
 }
@@ -58,9 +58,9 @@ let lastAnswer = "";
 
 numberButtons.forEach((numButton) => {
     numButton.addEventListener("click", () => {
-        numClicked = parseInt(`${numButton.textContent}`);
+        numClicked = Number(`${numButton.textContent}`);
         finalNum += numClicked;
-        calcDisplay.textContent = parseInt(finalNum);
+        calcDisplay.textContent = Number(finalNum);
         calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-shrink: -3");
     })
 })
@@ -70,7 +70,7 @@ operatorButtons.forEach((opButton) => {
         operationButton = `${opButton.textContent}`;
         if (!answer) {
             firstNumber = finalNum;
-            answer = lastAnswer || parseInt(firstNumber);
+            answer = lastAnswer || Number(firstNumber);
             finalNum = "";
             calcDisplay.textContent = answer;
             firstOperation = operationButton;
