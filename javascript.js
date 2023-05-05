@@ -49,11 +49,7 @@ const decimalButton = document.querySelector(".decimal");
 const numberButtons = document.querySelectorAll("#number");
 const operatorButtons = document.querySelectorAll("#operator");
 const displayContainer = document.querySelector(".display");
-const calcDisplay = document.createElement("div");
-calcDisplay.classList.add("calcDisplay");
-displayContainer.appendChild(calcDisplay);
-calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-grow: 0");
-
+const calcDisplay = document.querySelector(".calcDisplay");
 
 let finalNum = "";
 let answer = "";
