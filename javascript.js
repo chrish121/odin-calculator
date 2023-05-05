@@ -53,8 +53,9 @@ const calcDisplay = document.querySelector(".calcDisplay");
 calcDisplay.textContent = 0;
 
 let finalNum = 0;
-let answer = 0;
+let answer = "";
 let lastAnswer = 0;
+let operationButton = 0;
 
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", () => {
@@ -88,13 +89,21 @@ operatorButtons.forEach((opButton) => {
             calcDisplay.textContent = answer;
             firstOperation = operationButton;
         } else {
+            console.log(answer);
+            console.log(firstOperation);
             secondOperation = operationButton;
             operateAnswer = operate(answer, firstOperation, finalNum);
             finalNum = "";
             if ((operateAnswer.toString().length) <= 6) {
                 operateAnswer = operateAnswer;
             } else {
-                roundedAnswer = parseFloat(operateAnswer);
+                slicedAnswer = parseFloat(operateAnswer);
+                if ((slicedAnswer.toString().length) <= 6) {
+                    operateAnswer = slicedAnswer;
+                } else {
+                    roundedAnswer = slicedAnswer.toExponential(1);
+                    operateAnswer = roundedAnswer;
+                }
                 operateAnswer = roundedAnswer;
             }
             calcDisplay.textContent = operateAnswer;
@@ -106,18 +115,26 @@ operatorButtons.forEach((opButton) => {
 
 
 equalButton.addEventListener("click", () => {
-    lastAnswer = operate(answer, operationButton, finalNum);
-    if ((lastAnswer.toString().length) <= 6) {
-        operateAnswer = lastAnswer;
+    if (!operationButton) {
+        answer = 0;
+        calcDisplay.textContent = answer;
+        console.log(answer);
+        console.log(operationButton);
     } else {
-        slicedAnswer = parseFloat(lastAnswer);
-        console.log(slicedAnswer);
-        if ((slicedAnswer.toString().length) <= 6) {
-            operateAnswer = slicedAnswer;
+        lastAnswer = operate(answer, operationButton, finalNum);
+        console.log(answer, operationButton, finalNum);
+        if ((lastAnswer.toString().length) <= 6) {
+            operateAnswer = lastAnswer;
         } else {
-            roundedAnswer = slicedAnswer.toExponential(1);
-            operateAnswer = roundedAnswer;
+            slicedAnswer = parseFloat(lastAnswer);
+            console.log(slicedAnswer);
+            if ((slicedAnswer.toString().length) <= 6) {
+                operateAnswer = slicedAnswer;
+            } else {
+                roundedAnswer = slicedAnswer.toExponential(1);
+                operateAnswer = roundedAnswer;
+            }
         }
+        calcDisplay.textContent = operateAnswer;
     }
-    calcDisplay.textContent = operateAnswer;
 });
