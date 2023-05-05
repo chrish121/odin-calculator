@@ -43,6 +43,7 @@ function divide(...numbers) {
     return division;
 }
 
+const buttons = document.querySelectorAll("button");
 const equalButton = document.querySelector(".equal");
 const numberButtons = document.querySelectorAll("#number");
 const operatorButtons = document.querySelectorAll("#operator");
@@ -52,6 +53,8 @@ calcDisplay.classList.add("calcDisplay");
 displayContainer.appendChild(calcDisplay);
 
 let finalNum = "";
+let answer = "";
+let lastAnswer = "";
 
 numberButtons.forEach((numButton) => {
     numButton.addEventListener("click", () => {
@@ -64,18 +67,26 @@ numberButtons.forEach((numButton) => {
 
 operatorButtons.forEach((opButton) => {
     opButton.addEventListener("click", () => {
-        firstNumber = finalNum;
         operationButton = `${opButton.textContent}`;
-        finalNum = "";
-        console.log(firstNumber);
+        if (!answer) {
+            firstNumber = finalNum;
+            answer = lastAnswer || parseInt(firstNumber);
+            finalNum = "";
+            calcDisplay.textContent = answer;
+            firstOperation = operationButton;
+        } else {
+            secondOperation = operationButton;
+            operateAnswer = operate(answer, firstOperation, finalNum);
+            finalNum = "";
+            calcDisplay.textContent = operateAnswer;
+            answer = operateAnswer;
+            firstOperation = secondOperation;
+        };
     });
-})
+});
 
 
 equalButton.addEventListener("click", () => {
-    secondNumber = finalNum;
-    calcDisplay.textContent = secondNumber;
-    answer = operate(firstNumber, operationButton, secondNumber);
-    calcDisplay.textContent = answer;
-    finalNum = answer;
+    lastAnswer = operate(answer, operationButton, finalNum);
+    calcDisplay.textContent = lastAnswer;
 });
