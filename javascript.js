@@ -53,9 +53,10 @@ const calcDisplay = document.querySelector(".calcDisplay");
 calcDisplay.textContent = 0;
 
 let finalNum = 0;
-let answer = "";
+let answer = "nothing";
 let lastAnswer = 0;
 let operationButton = 0;
+let zeroAnswer = 0;
 
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", () => {
@@ -82,18 +83,25 @@ decimalButton.addEventListener("click", () => {
 operatorButtons.forEach((opButton) => {
     opButton.addEventListener("click", () => {
         operationButton = `${opButton.textContent}`;
-        if (!answer) {
+        if (answer === "nothing") {
             firstNumber = finalNum;
             answer = lastAnswer || Number(firstNumber);
-            finalNum = "";
+            finalNum = 0;
             calcDisplay.textContent = answer;
             firstOperation = operationButton;
+            console.log(firstOperation);
+            console.log(answer);
+        } else if (answer === "zeroAnswer") {
+            answer = 0;
+            calcDisplay.textContent = answer;
+            firstOperation = operationButton;
+            console.log(answer);
         } else {
             console.log(answer);
             console.log(firstOperation);
             secondOperation = operationButton;
             operateAnswer = operate(answer, firstOperation, finalNum);
-            finalNum = "";
+            finalNum = 0;
             if ((operateAnswer.toString().length) <= 6) {
                 operateAnswer = operateAnswer;
             } else {
@@ -116,10 +124,10 @@ operatorButtons.forEach((opButton) => {
 
 equalButton.addEventListener("click", () => {
     if (!operationButton) {
-        answer = 0;
-        calcDisplay.textContent = answer;
+        answer = "zeroAnswer";
+        zeroAnswer = 0;
+        calcDisplay.textContent = zeroAnswer;
         console.log(answer);
-        console.log(operationButton);
     } else {
         lastAnswer = operate(answer, operationButton, finalNum);
         console.log(answer, operationButton, finalNum);
