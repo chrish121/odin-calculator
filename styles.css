@@ -5,16 +5,26 @@
 .display {
     font-size: 65px;
     font-family: 'Courier New', Courier, monospace, serif;
+    display: flex;
+    flex-grow: 0;
 }
 
 .calculator {
     display: flex;
     flex-direction: column;
+    flex-grow: 0;
     border-radius: 15px;
+    background-color: gray;
+    border: 2px solid black;
+    width: min-content;
 }
 
 .calculatorBody {
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    margin: 15px;
 }
 
 .buttons {
@@ -55,14 +65,6 @@ button {
     padding: 10px;
     display: flex;
     justify-content: flex-end;
-}
-
-.calculator {
-    background-color: gray;
-    border: 2px solid black;
-    width: min-content;
-}
-
-.calculatorBody {
-    margin: 15px;
+    flex-grow: 0;
+    max-width: 286px;
 }

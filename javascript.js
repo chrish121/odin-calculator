@@ -52,7 +52,7 @@ const displayContainer = document.querySelector(".display");
 const calcDisplay = document.createElement("div");
 calcDisplay.classList.add("calcDisplay");
 displayContainer.appendChild(calcDisplay);
-calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-shrink: -3");
+calcDisplay.setAttribute = ("style", "font-family: 'Courier New', Courier, monospace, serif; color: black; font-size: 65px; display: flex; flex-grow: 0");
 
 
 let finalNum = "";
@@ -63,13 +63,13 @@ numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", () => {
         numClicked = (`${numberButton.textContent}`);
         finalNum += numClicked;
-        calcDisplay.textContent = Number(finalNum);
+        stringNum = " " + finalNum;
+        calcDisplay.textContent = Number(stringNum);
     })
 })
 
 decimalButton.addEventListener("click", () => {
     decimalClicked = `${decimalButton.textContent}`;
-    stringNum = " " + finalNum;
     if ((stringNum.includes(".")) == true) {
         finalNum = finalNum;
     } else {
