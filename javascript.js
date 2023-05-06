@@ -80,13 +80,35 @@ numberButtons.forEach((numberButton) => {
 
 decimalButton.addEventListener("click", () => {
     decimalClicked = `${decimalButton.textContent}`;
-    if ((finalNum.includes(".")) == true) {
-        finalNum = finalNum;
-    } else {
-        finalNum += decimalClicked;
-        calcDisplay.textContent += decimalClicked;
+    if (!operationButton) {
+        if ((finalNum.includes(".")) == true) {
+            finalNum = finalNum || 0;
+            display = finalNum || (calcDisplay.textContent);
+            calcDisplay.textContent = display;
+        } else if ((finalNum.includes(".")) == false) {
+            calcDisplay.textContent = finalNum || 0;
+            finalNum = finalNum || 0;
+            finalNum += decimalClicked;
+            calcDisplay.textContent += decimalClicked;
+        }
+    } else if (!!operationButton) {
+        if (!!finalNum) {
+            if ((finalNum.includes(".")) == true) {
+                finalNum = finalNum;
+                calcDisplay.textContent = finalNum;
+            } else if ((finalNum.includes(".")) == false) {
+                finalNum = finalNum || 0;
+                finalNum += decimalClicked;
+                calcDisplay.textContent += decimalClicked;
+            }
+        } else if (!finalNum) {
+            calcDisplay.textContent = finalNum || 0;
+            finalNum = finalNum || 0;
+            finalNum += decimalClicked;
+            calcDisplay.textContent += decimalClicked;
+        }
     }
-})
+});
 
 operatorButtons.forEach((opButton) => {
     opButton.addEventListener("click", () => {
