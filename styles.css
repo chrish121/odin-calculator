@@ -49,11 +49,6 @@
     flex-direction: row;
 }
 
-button {
-    height: 50px;
-    width: 70px;
-}
-
 #backspace, .equal {
     height: 50px;
     width: 150px;
@@ -64,6 +59,9 @@ button {
     margin: 5px;
     border: 2px solid rgb(91, 91, 91);
     border-radius: 10px;
+    height: 50px;
+    width: 70px;
+    background-color: rgb(240, 240, 240);
 }
 
 .screenRectangle {
