@@ -92,28 +92,22 @@ numberButtons.forEach((numberButton) => {
                 finalNum = "";
                 if ((finalNum.toString().length) <= 6) {
                     finalNum += numClicked;
-                    console.log(finalNum);
                 } else {
                     finalNum = finalNum;
-                    console.log(finalNum);
                 }
             } else {
                 if ((finalNum.toString().length) <= 6) {
                     finalNum += numClicked;
-                    console.log(finalNum);
                 } else {
                     finalNum = finalNum;
-                    console.log(finalNum);
                 }
             };
         } else if ((answer !== "nothing") && (!operationButton)) {
             finalNum = "";
             if ((finalNum.toString().length) <= 6) {
                 finalNum += numClicked;
-                console.log(finalNum);
             } else {
                 finalNum = finalNum;
-                console.log(finalNum);
             }
             answer = "nothing";
         } else if (!!operationButton) {
@@ -121,10 +115,8 @@ numberButtons.forEach((numberButton) => {
                 finalNum = "";
                 if ((finalNum.toString().length) <= 6) {
                     finalNum += numClicked;
-                    console.log(finalNum);
                 } else {
                     finalNum = finalNum;
-                    console.log(finalNum);
                 }
             } else {
                 finalNum = finalNum;
@@ -132,24 +124,19 @@ numberButtons.forEach((numberButton) => {
                     finalNum = "";
                     if ((finalNum.toString().length) <= 6) {
                         finalNum += numClicked;
-                        console.log(finalNum);
                     } else {
                         finalNum = finalNum;
-                        console.log(finalNum);
                     }
                 } else {
                     if ((finalNum.toString().length) <= 6) {
                         finalNum += numClicked;
-                        console.log(finalNum);
                     } else {
                         finalNum = finalNum;
-                        console.log(finalNum);
                     }
                 };
             }
         }
         calcDisplay.textContent = (finalNum);
-        console.log(finalNum);
     })
 })
 
@@ -167,7 +154,6 @@ backspaceButton.addEventListener("click", () => {
         }
     };
     calcDisplay.textContent = finalNum;
-    console.log(finalNum);
 })
 
 decimalButton.addEventListener("click", () => {
@@ -211,21 +197,16 @@ operatorButtons.forEach((opButton) => {
             finalNum = "";
             calcDisplay.textContent = answer;
             firstOperation = operationButton;
-            console.log(firstOperation);
-            console.log(answer);
         } else if (answer === "noAnswer") {
             answer = noAnswer;
             calcDisplay.textContent = answer;
             firstOperation = operationButton;
-            console.log(answer);
         } else {
             secondOperation = operationButton;
             if ((firstOperation === "/") && ((finalNum === "0") || (finalNum === ""))) {
-                console.log("NO");
                 operateAnswer = "NO";
             } else {
                 operateAnswer = operate(answer, firstOperation, finalNum);
-                console.log(answer, firstOperation, finalNum);
                 finalNum = "";
                 if ((operateAnswer.toString().length) <= 6) {
                     operateAnswer = operateAnswer;
@@ -254,20 +235,16 @@ equalButton.addEventListener("click", () => {
         answer = "noAnswer";
         noAnswer = finalNum || 0;
         calcDisplay.textContent = noAnswer;
-        console.log(answer);
         finalNum = "";
     } else {
         if ((operationButton === "/") && ((finalNum === "0") || (finalNum === ""))) {
-            console.log("NO");
             operateAnswer = "NO";
         } else {
             lastAnswer = operate(answer, operationButton, finalNum);
-            console.log(answer, operationButton, finalNum);
             if ((lastAnswer.toString().length) <= 6) {
                 operateAnswer = lastAnswer;
             } else {
                 slicedAnswer = parseFloat(lastAnswer);
-                console.log(slicedAnswer);
                 if ((slicedAnswer.toString().length) <= 6) {
                     operateAnswer = slicedAnswer;
                 } else {
@@ -277,7 +254,6 @@ equalButton.addEventListener("click", () => {
             }
         };
         calcDisplay.textContent = operateAnswer;
-        console.log(operateAnswer);
         operationButton = 0;
     }
 });
