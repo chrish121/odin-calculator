@@ -91,13 +91,24 @@ numberButtons.forEach((numberButton) => {
             }
             answer = "nothing";
         } else if (!!operationButton) {
-            finalNum = finalNum;
-            if ((finalNum.toString().length) <= 6) {
-                finalNum += numClicked;
-                console.log(finalNum);
+            if (finalNum === "0") {
+                finalNum = "";
+                if ((finalNum.toString().length) <= 6) {
+                    finalNum += numClicked;
+                    console.log(finalNum);
+                } else {
+                    finalNum = finalNum;
+                    console.log(finalNum);
+                }
             } else {
                 finalNum = finalNum;
-                console.log(finalNum);
+                if ((finalNum.toString().length) <= 6) {
+                    finalNum += numClicked;
+                    console.log(finalNum);
+                } else {
+                    finalNum = finalNum;
+                    console.log(finalNum);
+                }
             }
         }
         calcDisplay.textContent = (finalNum);
@@ -156,20 +167,25 @@ operatorButtons.forEach((opButton) => {
             console.log(answer);
         } else {
             secondOperation = operationButton;
-            operateAnswer = operate(answer, firstOperation, finalNum);
-            console.log(answer, firstOperation, finalNum);
-            finalNum = "";
-            if ((operateAnswer.toString().length) <= 6) {
-                operateAnswer = operateAnswer;
+            if ((firstOperation === "/") && (finalNum === "0")) {
+                console.log("NO");
+                operateAnswer = "NO";
             } else {
-                slicedAnswer = parseFloat(operateAnswer);
-                if ((slicedAnswer.toString().length) <= 6) {
-                    operateAnswer = slicedAnswer;
+                operateAnswer = operate(answer, firstOperation, finalNum);
+                console.log(answer, firstOperation, finalNum);
+                finalNum = "";
+                if ((operateAnswer.toString().length) <= 6) {
+                    operateAnswer = operateAnswer;
                 } else {
-                    roundedAnswer = slicedAnswer.toExponential(1);
+                    slicedAnswer = parseFloat(operateAnswer);
+                    if ((slicedAnswer.toString().length) <= 6) {
+                        operateAnswer = slicedAnswer;
+                    } else {
+                        roundedAnswer = slicedAnswer.toExponential(1);
+                        operateAnswer = roundedAnswer;
+                    }
                     operateAnswer = roundedAnswer;
                 }
-                operateAnswer = roundedAnswer;
             }
             calcDisplay.textContent = operateAnswer;
             answer = operateAnswer;
@@ -188,20 +204,25 @@ equalButton.addEventListener("click", () => {
         console.log(answer);
         finalNum = "";
     } else {
-        lastAnswer = operate(answer, operationButton, finalNum);
-        console.log(answer, operationButton, finalNum);
-        if ((lastAnswer.toString().length) <= 6) {
-            operateAnswer = lastAnswer;
+        if ((operationButton === "/") && (finalNum === "0")) {
+            console.log("NO");
+            operateAnswer = "NO";
         } else {
-            slicedAnswer = parseFloat(lastAnswer);
-            console.log(slicedAnswer);
-            if ((slicedAnswer.toString().length) <= 6) {
-                operateAnswer = slicedAnswer;
+            lastAnswer = operate(answer, operationButton, finalNum);
+            console.log(answer, operationButton, finalNum);
+            if ((lastAnswer.toString().length) <= 6) {
+                operateAnswer = lastAnswer;
             } else {
-                roundedAnswer = slicedAnswer.toExponential(1);
-                operateAnswer = roundedAnswer;
+                slicedAnswer = parseFloat(lastAnswer);
+                console.log(slicedAnswer);
+                if ((slicedAnswer.toString().length) <= 6) {
+                    operateAnswer = slicedAnswer;
+                } else {
+                    roundedAnswer = slicedAnswer.toExponential(1);
+                    operateAnswer = roundedAnswer;
+                }
             }
-        }
+        };
         calcDisplay.textContent = operateAnswer;
         console.log(operateAnswer);
         operationButton = 0;
