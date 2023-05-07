@@ -65,8 +65,10 @@ let backButton = 0;
 buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
         event.target.style.backgroundColor = "rgb(80, 80, 80)";
+        event.target.style.color = "white";
         setTimeout(() => {
             event.target.style.backgroundColor = "";
+            event.target.style.color = "";
         }, 250)
     })
 })
@@ -253,7 +255,7 @@ equalButton.addEventListener("click", () => {
         console.log(answer);
         finalNum = "";
     } else {
-        if ((operationButton === "/") && (finalNum === "0")) {
+        if ((operationButton === "/") && ((finalNum === "0") || (finalNum === ""))) {
             console.log("NO");
             operateAnswer = "NO";
         } else {
