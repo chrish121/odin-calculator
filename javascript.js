@@ -58,6 +58,7 @@ let answer = "nothing";
 let lastAnswer = 0;
 let operationButton = 0;
 let zeroAnswer = 0;
+let equalPress = 0;
 
 clearButton.addEventListener("click", () => {
     calcDisplay.textContent = "";
@@ -71,14 +72,39 @@ clearButton.addEventListener("click", () => {
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", () => {
         numClicked = (`${numberButton.textContent}`);
-        if ((finalNum.toString().length) <= 6) {
-            finalNum += numClicked;
-        } else {
+        if (answer === "nothing") {
+            if ((finalNum.toString().length) <= 6) {
+                finalNum += numClicked;
+                console.log(finalNum);
+            } else {
+                finalNum = finalNum;
+                console.log(finalNum);
+            }
+        } else if ((answer !== "nothing") && (!operationButton)) {
+            finalNum = "";
+            if ((finalNum.toString().length) <= 6) {
+                finalNum += numClicked;
+                console.log(finalNum);
+            } else {
+                finalNum = finalNum;
+                console.log(finalNum);
+            }
+            answer = "nothing";
+        } else if (!!operationButton) {
             finalNum = finalNum;
+            if ((finalNum.toString().length) <= 6) {
+                finalNum += numClicked;
+                console.log(finalNum);
+            } else {
+                finalNum = finalNum;
+                console.log(finalNum);
+            }
         }
         calcDisplay.textContent = (finalNum);
+        console.log(finalNum);
     })
 })
+
 
 decimalButton.addEventListener("click", () => {
     decimalClicked = `${decimalButton.textContent}`;
@@ -87,36 +113,27 @@ decimalButton.addEventListener("click", () => {
             finalNum = finalNum || 0;
             display = finalNum || (calcDisplay.textContent);
             calcDisplay.textContent = display;
-            console.log(calcDisplay.textContent);
-
         } else if ((finalNum.includes(".")) == false) {
             calcDisplay.textContent = finalNum || 0;
             finalNum = finalNum || 0;
             finalNum += decimalClicked;
             calcDisplay.textContent += decimalClicked;
-            console.log(calcDisplay.textContent);
         }
     } else if (!!operationButton) {
         if (!!finalNum) {
             if ((finalNum.includes(".")) == true) {
                 finalNum = finalNum;
                 calcDisplay.textContent = finalNum;
-                console.log(calcDisplay.textContent);
-
             } else if ((finalNum.includes(".")) == false) {
                 finalNum = finalNum || 0;
                 finalNum += decimalClicked;
                 calcDisplay.textContent += decimalClicked;
-                console.log(calcDisplay.textContent);
-
             }
         } else if (!finalNum) {
             calcDisplay.textContent = finalNum || 0;
             finalNum = finalNum || 0;
             finalNum += decimalClicked;
             calcDisplay.textContent += decimalClicked;
-            console.log(calcDisplay.textContent);
-
         }
     }
 });
@@ -126,7 +143,7 @@ operatorButtons.forEach((opButton) => {
         operationButton = `${opButton.textContent}`;
         if (answer === "nothing") {
             firstNumber = finalNum;
-            answer = lastAnswer || Number(firstNumber);
+            answer = Number(firstNumber) || lastAnswer;
             finalNum = "";
             calcDisplay.textContent = answer;
             firstOperation = operationButton;
@@ -163,6 +180,7 @@ operatorButtons.forEach((opButton) => {
 
 
 equalButton.addEventListener("click", () => {
+    equalPress = "yes";
     if (!operationButton) {
         answer = "noAnswer";
         noAnswer = finalNum || 0;
@@ -185,5 +203,7 @@ equalButton.addEventListener("click", () => {
             }
         }
         calcDisplay.textContent = operateAnswer;
+        console.log(operateAnswer);
+        operationButton = 0;
     }
 });
