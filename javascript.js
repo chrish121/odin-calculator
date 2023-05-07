@@ -80,6 +80,8 @@ clearButton.addEventListener("click", () => {
     operationButton = 0;
     lastAnswer = 0;
     zeroAnswer = 0;
+    equalPress = 0;
+    backButton = 0;
 })
 
 numberButtons.forEach((numberButton) => {
