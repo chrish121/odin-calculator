@@ -216,7 +216,7 @@ operatorButtons.forEach((opButton) => {
             console.log(answer);
         } else {
             secondOperation = operationButton;
-            if ((firstOperation === "/") && (finalNum === "0")) {
+            if ((firstOperation === "/") && ((finalNum === "0") || (finalNum === ""))) {
                 console.log("NO");
                 operateAnswer = "NO";
             } else {
