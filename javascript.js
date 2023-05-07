@@ -62,13 +62,13 @@ let zeroAnswer = 0;
 let equalPress = 0;
 let backButton = 0;
 
+
+
 buttons.forEach((button) => {
     button.addEventListener("click", (event) => {
-        event.target.style.backgroundColor = "rgb(80, 80, 80)";
-        event.target.style.color = "white";
+        event.target.style.backgroundColor = "rgb(203, 203, 203)";
         setTimeout(() => {
             event.target.style.backgroundColor = "";
-            event.target.style.color = "";
         }, 250)
     })
 })
