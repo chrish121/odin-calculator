@@ -274,11 +274,11 @@ clearButton.addEventListener("click", clickClear)
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", () => {
         numClicked = (`${numberButton.textContent}`);
-        clickNumber()
+        clickNumber();
     });
 })
 
-backspaceButton.addEventListener("click", backspace());
+backspaceButton.addEventListener("click", backspace);
 
 decimalButton.addEventListener("click", () => {
     decimalClicked = `${decimalButton.textContent}`;
