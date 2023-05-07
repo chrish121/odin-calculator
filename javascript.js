@@ -45,6 +45,7 @@ function divide(...numbers) {
 
 const buttons = document.querySelectorAll("button");
 const clearButton = document.querySelector("#clear");
+const backspaceButton = document.querySelector("#backspace");
 const equalButton = document.querySelector(".equal");
 const decimalButton = document.querySelector(".decimal");
 const numberButtons = document.querySelectorAll("#number");
@@ -59,6 +60,7 @@ let lastAnswer = 0;
 let operationButton = 0;
 let zeroAnswer = 0;
 let equalPress = 0;
+let backButton = 0;
 
 clearButton.addEventListener("click", () => {
     calcDisplay.textContent = "";
@@ -73,13 +75,24 @@ numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click", () => {
         numClicked = (`${numberButton.textContent}`);
         if (answer === "nothing") {
-            if ((finalNum.toString().length) <= 6) {
-                finalNum += numClicked;
-                console.log(finalNum);
+            if ((backButton === "yes") && (calcDisplay.textContent === "0")) {
+                finalNum = "";
+                if ((finalNum.toString().length) <= 6) {
+                    finalNum += numClicked;
+                    console.log(finalNum);
+                } else {
+                    finalNum = finalNum;
+                    console.log(finalNum);
+                }
             } else {
-                finalNum = finalNum;
-                console.log(finalNum);
-            }
+                if ((finalNum.toString().length) <= 6) {
+                    finalNum += numClicked;
+                    console.log(finalNum);
+                } else {
+                    finalNum = finalNum;
+                    console.log(finalNum);
+                }
+            };
         } else if ((answer !== "nothing") && (!operationButton)) {
             finalNum = "";
             if ((finalNum.toString().length) <= 6) {
@@ -102,13 +115,24 @@ numberButtons.forEach((numberButton) => {
                 }
             } else {
                 finalNum = finalNum;
-                if ((finalNum.toString().length) <= 6) {
-                    finalNum += numClicked;
-                    console.log(finalNum);
+                if ((backButton === "yes") && (calcDisplay.textContent === "0")) {
+                    finalNum = "";
+                    if ((finalNum.toString().length) <= 6) {
+                        finalNum += numClicked;
+                        console.log(finalNum);
+                    } else {
+                        finalNum = finalNum;
+                        console.log(finalNum);
+                    }
                 } else {
-                    finalNum = finalNum;
-                    console.log(finalNum);
-                }
+                    if ((finalNum.toString().length) <= 6) {
+                        finalNum += numClicked;
+                        console.log(finalNum);
+                    } else {
+                        finalNum = finalNum;
+                        console.log(finalNum);
+                    }
+                };
             }
         }
         calcDisplay.textContent = (finalNum);
@@ -116,6 +140,22 @@ numberButtons.forEach((numberButton) => {
     })
 })
 
+backspaceButton.addEventListener("click", () => {
+    backButton = "yes";
+    if (!finalNum) {
+        finalNum = finalNum;
+    } else {
+        slicedNum = finalNum.slice(0, -1);
+        finalNum = slicedNum;
+        if (finalNum === "") {
+            finalNum = 0;
+        } else {
+            finalNum = finalNum;
+        }
+    };
+    calcDisplay.textContent = finalNum;
+    console.log(finalNum);
+})
 
 decimalButton.addEventListener("click", () => {
     decimalClicked = `${decimalButton.textContent}`;
