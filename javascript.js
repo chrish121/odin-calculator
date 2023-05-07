@@ -286,6 +286,15 @@ decimalButton.addEventListener("click", () => {
 });
 
 operatorButtons.forEach((opButton) => {
+    opButton.addEventListener("click", (event) => {
+        event.target.style.backgroundColor = "rgb(124, 31, 31)";
+        setTimeout(() => {
+            event.target.style.backgroundColor = "";
+        }, 250)
+    });
+});
+
+operatorButtons.forEach((opButton) => {
     opButton.addEventListener("click", () => {
         operationButton = `${opButton.textContent}`;
         clickOperator();
