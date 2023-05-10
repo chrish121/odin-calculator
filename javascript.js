@@ -194,11 +194,11 @@ function clickOperator() {
             if ((operateAnswer.toString().length) <= 6) {
                 operateAnswer = operateAnswer;
             } else {
-                slicedAnswer = parseFloat(operateAnswer);
-                if ((slicedAnswer.toString().length) <= 6) {
-                    operateAnswer = slicedAnswer;
+                parsedAnswer = parseFloat(operateAnswer);
+                if ((parsedAnswer.toString().length) <= 6) {
+                    operateAnswer = parsedAnswer;
                 } else {
-                    roundedAnswer = slicedAnswer.toExponential(1);
+                    roundedAnswer = parsedAnswer.toExponential(1);
                     operateAnswer = roundedAnswer;
                 }
                 operateAnswer = roundedAnswer;
@@ -225,11 +225,11 @@ function clickEqual() {
             if ((lastAnswer.toString().length) <= 6) {
                 operateAnswer = lastAnswer;
             } else {
-                slicedAnswer = parseFloat(lastAnswer);
-                if ((slicedAnswer.toString().length) <= 6) {
-                    operateAnswer = slicedAnswer;
+                parsedAnswer = parseFloat(lastAnswer);
+                if ((parsedAnswer.toString().length) <= 6) {
+                    operateAnswer = parsedAnswer;
                 } else {
-                    roundedAnswer = slicedAnswer.toExponential(1);
+                    roundedAnswer = parsedAnswer.toExponential(1);
                     operateAnswer = roundedAnswer;
                 }
             }
